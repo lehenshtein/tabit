@@ -44,3 +44,67 @@ document.getElementById("horizontal-scroller")
       event.preventDefault();
     }
   });
+
+
+//creating note
+
+
+
+//      $( '.tabs-width' ).on( 'click', '.string', function( event ) {
+//  console.log( this ); // записываем элемент, на который щёлкнули
+//           $( '<div class="note note16"><div class="note-fret">1</div></div>' ).appendTo( this );
+//    });
+ var editor = $('.note-popup--wrapper');
+var elementOfTablist;
+var noteLength = 16,
+    noteFret = 0,
+    noteTechnique;
+
+
+    $( '.tabs-width' ).on( 'click', function( event ) {
+       elementOfTablist = $(event.target); //looking for string or note
+       
+        
+        
+        if(elementOfTablist.hasClass('note-fret')) {
+            console.log(event.target.parentNode);
+            elementOfTablist.parent().remove();
+        }
+        else if (elementOfTablist.hasClass('string')){
+            console.log(event.target);
+            
+            editor.addClass('active');
+                
+            
+        }
+        console.log(elementOfTablist);
+     return false;
+    });
+
+editor.on('click', function(event2) { //tracking what we clicked in note editor
+                var elem = $(event2.target);
+                
+                if(elem.hasClass('close-img')) {
+                    editor.removeClass('active');
+                    $( '<div class="note note' + noteLength + ' ' + noteTechnique + '"><div class="note-fret">' + noteFret + '</div></div>' ).appendTo( elementOfTablist );
+                    noteTechnique = null;
+                }
+                else if (elem.hasClass('note-length-btn')){
+                    noteLength = event2.target.innerHTML;
+                    console.log(noteLength);
+                }
+                else if (elem.hasClass('note-slider')){
+                    noteFret = event2.target.value;
+                    console.log(noteFret);
+                }
+                else if (elem.parent().hasClass('note-technique__ico')){
+                 noteTechnique = elem.attr('alt');
+                console.log(noteTechnique);
+                }
+                else if (elem.hasClass('note-technique__ico')){
+                 noteTechnique = elem.children().attr('alt');
+                console.log(noteTechnique);
+                }
+            });
+
+    

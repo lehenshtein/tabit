@@ -10,13 +10,58 @@
     <title>TabIt</title>
 </head>
 <body>
-  <style>
+<div class="note-popup--wrapper">
+    <div class="note-popup">
+        <h3>Edit note</h3>
+        <div class="close close-img"><img src="img/close.png" alt="" class="close-img"></div>
+        <div class="note-popup__row1">
+            <p class="note-popup__title">
+                Note length
+            </p>
+            <div class="note-length__wrapper">
+                <div class="note-length-btn note-length-btn__16">16</div>
+                <div class="note-length-btn note-length-btn__8">8</div>
+                <div class="note-length-btn note-length-btn__4">4</div>
+                <div class="note-length-btn note-length-btn__2">2</div>
+                <div class="note-length-btn note-length-btn__1">1</div>
+                <div class="note-length-btn note-length-btn__X">X</div>
+            </div>
+        </div>
+        <div class="note-popup__row2">
+            <p class="note-popup__title">
+                Fret
+            </p>
+            <div class="input-box">
+                <input class="slider note-slider" value="20" min="0" max="25" name="rangeslider" type="range" />
+            </div>
+            <div class="values">
+                <span>0</span><span>25</span>
+            </div>
+        </div>
+        <div class="note-popup__row3">
+            <p class="note-popup__title">
+                Technique
+            </p>
+            <div class="note-technique__wrapper">
+                <div class="note-technique__ico note-technique__ico1"><img src="img/hammer.png" title="hammer/pull" alt="hm"></div>
+                <div class="note-technique__ico note-technique__ico2"><img src="img/slide.png" title="slide" alt="slide"></div>
+                <div class="note-technique__ico note-technique__ico3"><img src="img/vibrato.png" title="vibrato" alt="vibrato"></div>
+                <div class="note-technique__ico note-technique__ico4"><img src="img/half-vibrato.png" title="half vibrato" alt="half-vibrato"></div>
+                <div class="note-technique__ico note-technique__ico5"><img src="img/bend.png" title="bend" alt="bend"></div>
+                <div class="note-technique__ico note-technique__ico6"><img src="img/half-bend.png" title="half-bend" alt="half-bend"></div>
+                <div class="note-technique__ico note-technique__ico7"><img src="img/bend-from-top.png" title="top bend" alt="top-bend"></div>
+                <div class="note-technique__ico note-technique__ico8"><img src="img/half-bend-from-top.png" title="half top bend" alt="half-top-bend"></div>
+                <div class="note-technique__ico note-technique__ico9"><img src="img/hammer.png" alt=""></div>
+                <div class="note-technique__ico note-technique__ico10"><img src="img/hammer.png" alt=""></div>
 
-    </style>
+            </div>
+        </div>
+    </div>
+</div>
 
    <section class="tabulature-wrapper">
        <div class="tabulature" id="horizontal-scroller">
-        <div class="tabs-width">
+        <div class="tabs-width" id='tab-list'>
        
         <div class="string string1">
            
@@ -63,6 +108,7 @@
     </div>    
 </div>
    </section>
+   
 <!-- notes  -->
    <div class="note note16">
        <div class="note-fret">3</div>
@@ -83,53 +129,6 @@
        <div class="note-fret">3</div>
    </div>
 <!-- notes end -->
-    <div class="note-popup">
-        <h3>Edit note</h3>
-        <div class="close" id="close"><img src="img/close.png" alt=""></div>
-        <div class="note-popup__row1">
-            <p class="note-popup__title">
-                Note length
-            </p>
-            <div class="note-length__wrapper">
-                <div class="note-length-btn note-length-btn__16">16</div>
-                <div class="note-length-btn note-length-btn__8">8</div>
-                <div class="note-length-btn note-length-btn__4">4</div>
-                <div class="note-length-btn note-length-btn__2">2</div>
-                <div class="note-length-btn note-length-btn__1">1</div>
-                <div class="note-length-btn note-length-btn__X">X</div>
-            </div>
-        </div>
-        <div class="note-popup__row2">
-            <p class="note-popup__title">
-                Fret
-            </p>
-            <div class="input-box">
-                <input class="slider" value="20" min="0" max="25" name="rangeslider" type="range" />
-            </div>
-            <div class="values">
-                <span>0</span><span>25</span>
-            </div>
-        </div>
-        <div class="note-popup__row3">
-            <p class="note-popup__title">
-                Technique
-            </p>
-            <div class="note-technique__wrapper">
-                <div class="note-technique__ico note-technique__ico1"><img src="img/hammer.png" title="hammer/pull" alt=""></div>
-                <div class="note-technique__ico note-technique__ico2"><img src="img/slide.png" title="slide" alt=""></div>
-                <div class="note-technique__ico note-technique__ico3"><img src="img/vibrato.png" title="vibrato" alt=""></div>
-                <div class="note-technique__ico note-technique__ico4"><img src="img/half-vibrato.png" title="half vibrato" alt=""></div>
-                <div class="note-technique__ico note-technique__ico5"><img src="img/bend.png" title="bend" alt=""></div>
-                <div class="note-technique__ico note-technique__ico6"><img src="img/half-bend.png" title="half-bend" alt=""></div>
-                <div class="note-technique__ico note-technique__ico7"><img src="img/bend-from-top.png" title="top bend" alt=""></div>
-                <div class="note-technique__ico note-technique__ico8"><img src="img/half-bend-from-top.png" title="half top bend" alt=""></div>
-                <div class="note-technique__ico note-technique__ico9"><img src="img/hammer.png" alt=""></div>
-                <div class="note-technique__ico note-technique__ico10"><img src="img/hammer.png" alt=""></div>
-
-            </div>
-        </div>
-    </div>
-
 
 
     <script
