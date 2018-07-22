@@ -58,7 +58,8 @@ document.getElementById("horizontal-scroller")
 var elementOfTablist;
 var noteLength = 16,
     noteFret = 0,
-    noteTechnique;
+    noteTechnique = '';
+var spaceBetweenRounded = 0;
 
 
     $( '.tabs-width' ).on( 'click', function( event ) {
@@ -66,7 +67,11 @@ var noteLength = 16,
        
         
         
-        if(elementOfTablist.hasClass('note-fret')) {
+        if(elementOfTablist.hasClass('note')) {
+            console.log(event.target);
+            elementOfTablist.remove();
+        }
+        else if(elementOfTablist.hasClass('note-fret')) {
             console.log(event.target.parentNode);
             elementOfTablist.parent().remove();
         }
@@ -74,7 +79,31 @@ var noteLength = 16,
             console.log(event.target);
             
             editor.addClass('active');
-                
+            
+            
+            var parentOffset = elementOfTablist.offset();
+            var relX = event.pageX - parentOffset.left,
+                relY = event.pageY - parentOffset.top;
+            
+            var lastChild = elementOfTablist.children('.note').last();//последняя нота струны
+            var lastChildWidth = lastChild.width();//ширина последней ноты
+            var lastChildOffset = lastChild.offset();
+            var childX = lastChildOffset.left - lastChild.parent().offset().left,
+                childY = lastChildOffset.top  - lastChild.parent().offset().top;
+            
+            var spaceBetweenNoteAndClick = (relX - (childX + lastChildWidth)) / 24;
+            spaceBetweenRounded = Math.round(spaceBetweenNoteAndClick) * 24;
+            
+            console.log('отступ слева' + relX);
+            console.log('отступ сверху' + relY);
+            console.log('последний элемент');
+            console.log(lastChild);
+             console.log('отступ слева дочернего элемента' + childX);
+            console.log('отступ сверху дочернего элемента' + childY);
+            console.log(lastChildWidth);
+            console.log('расстояние между кликом и правым краем последней ноты:');
+            console.log(spaceBetweenNoteAndClick);
+            console.log(spaceBetweenRounded);
             
         }
         console.log(elementOfTablist);
@@ -86,8 +115,8 @@ editor.on('click', function(event2) { //tracking what we clicked in note editor
                 
                 if(elem.hasClass('close-img')) {
                     editor.removeClass('active');
-                    $( '<div class="note note' + noteLength + ' ' + noteTechnique + '"><div class="note-fret">' + noteFret + '</div></div>' ).appendTo( elementOfTablist );
-                    noteTechnique = null;
+                    $( '<div class="note note' + noteLength + ' ' + noteTechnique + '"' + 'style="margin-left: '+ spaceBetweenRounded + 'px' +'"><div class="note-fret">' + noteFret + '</div></div>' ).appendTo( elementOfTablist );
+                    noteTechnique = '';
                 }
                 else if (elem.hasClass('note-length-btn')){
                     noteLength = event2.target.innerHTML;

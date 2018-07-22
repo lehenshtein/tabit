@@ -96,33 +96,33 @@ body {
     font-size: 0.875em;
     display: inline-block;
 }
-.note16 .note-fret {
+.noteX .note-fret {
     padding-left: 0;
 }
 .note16 {
-    width: 24px;
+    width: 48px;
     background-color: var(--color16);
-    text-align: center;
 }
 .note8 {
-    width: 48px;
+    width: 96px;
     background-color: var(--color8); 
 }
 .note4 {
-    width: 96px;
+    width: 192px;
     background-color: var(--color4); 
 }
 .note2 {
-    width: 192px;
+    width: 384px;
     background-color: var(--color2); 
 }
 .note1 {
-    width: 384px;
+    width: 768px;
     background-color: var(--color1); 
 }
 .noteX {
     width: 24px;
-    background-color: var(--colorX); 
+    background-color: var(--colorX);
+    text-align: center;
 }
 .hm::after {
     content: url(../img/hammer.png);
