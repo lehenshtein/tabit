@@ -570,6 +570,9 @@ if (!current_user_can('administrator') && !is_admin()) {
   show_admin_bar(false);
 }
 };
+wp_enqueue_script('script-js', get_template_directory_uri() . '/js/script.js', array(), false, true);
+
+
 add_filter( 'widget_tag_cloud_args', 'twentyseventeen_widget_tag_cloud_args' );
 
 /**
@@ -596,3 +599,4 @@ require get_parent_theme_file_path( '/inc/customizer.php' );
  * SVG icons functions and filters.
  */
 require get_parent_theme_file_path( '/inc/icon-functions.php' );
+

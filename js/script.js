@@ -86,13 +86,19 @@ var spaceBetweenRounded = 0;
                 relY = event.pageY - parentOffset.top;
             
             var lastChild = elementOfTablist.children('.note').last();//последняя нота струны
-            var lastChildWidth = lastChild.width();//ширина последней ноты
+            if(lastChildOffset != undefined || lastChild.parent().offset() != undefined ) {
+                var lastChildWidth = lastChild.width();//ширина последней ноты
             var lastChildOffset = lastChild.offset();
             var childX = lastChildOffset.left - lastChild.parent().offset().left,
                 childY = lastChildOffset.top  - lastChild.parent().offset().top;
             
             var spaceBetweenNoteAndClick = (relX - (childX + lastChildWidth)) / 24;
-            spaceBetweenRounded = Math.round(spaceBetweenNoteAndClick) * 24;
+            spaceBetweenRounded = Math.floor(spaceBetweenNoteAndClick) * 24;
+            } else {
+                var spaceBetweenNoteAndClick = relX / 24;
+            spaceBetweenRounded = Math.floor(spaceBetweenNoteAndClick) * 24;
+            }
+            
             
             console.log('отступ слева' + relX);
             console.log('отступ сверху' + relY);
