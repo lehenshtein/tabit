@@ -436,3 +436,10 @@ if( is_user_logged_in() ) {
     return $args;
 }
 add_filter( 'wp_nav_menu_args', 'my_wp_nav_menu_args' );
+add_action('after_setup_theme', 'remove_admin_bar');
+ 
+function remove_admin_bar() {
+if (!current_user_can('administrator') && !is_admin()) {
+  show_admin_bar(false);
+}
+};

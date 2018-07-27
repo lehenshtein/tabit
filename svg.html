@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        .ico-block {
+            display: inline-block;
+             transition: 1s;
+            transform: scale(4) translate(80%, 50%);
+             -webkit-animation: iconNormal 1s ease 1.7s forwards;
+            animation: iconNormal 1s ease 1.7s forwards;
+        }
+        .icon {
+  display: block;
+  width: 150px;
+            height: 55px;
+	stroke-width: 16;
+	fill: none;
+	stroke: #4e4e4e;
+  stroke-dasharray: 6030;
+  stroke-dashoffset: 6030;
+  -webkit-animation: dash 2s ease-in forwards;
+  animation: dash 1s ease-in forwards;
+}
+
+        .goldJack {
+            fill: #FEED17;
+            stroke: none;
+            opacity: 0;
+          
+            -webkit-animation: opacityJack .17s ease .9s forwards;
+            animation: opacityJack .17s ease .9s forwards;
+        }
+        .darkJack {
+            fill: #2e2e2e;
+            stroke: none;
+            opacity: 0;
+            
+            -webkit-animation: opacityJack .17s ease .9s forwards;
+            animation: opacityJack .17s ease .9s forwards;
+        }
+
+@-webkit-keyframes dash {
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+        @-webkit-keyframes iconNormal {
+  100% {
+    transform: scale(1) translate(0%);
+  }
+}
+        @-webkit-keyframes opacityJack {
+  100% {
+    opacity: 1;
+  }
+}
+        .shadow {
+    /* Use -webkit- only if supporting: Chrome < 54, iOS < 9.3, Android < 4.4.4 */
+    -webkit-filter: drop-shadow( 3px 5px 2px rgba(0, 0, 0, 0.35) ); 
+            filter: drop-shadow( 3px 5px 2px rgba(0, 0, 0, 0.35) );
+            /*stroke: url(#linear-gradient);*/
+}
+    </style>
+</head>
+<body>
+    <svg style="position: absolute; width: 0; height: 0; overflow: hidden" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+   
+     <linearGradient id="linear-gradient">
+    <stop offset="0%" stop-color="#000000"/>
+    <stop offset="41%" stop-color="#000000"/>
+    <stop offset="42%" stop-color="#dd2222"/>
+    <stop offset="57%" stop-color="#dd2222"/>
+    <stop offset="58%" stop-color="#000000"/>
+    <stop offset="100%" stop-color="#000000"/>
+  </linearGradient>
+      
+<defs>
+<symbol id="ico1"  viewBox="0 0 1109.729 387.01">
+<title>arrow-right3</title>
+  <g id="Group_16" data-name="Group 16" transform="translate(0.029 0.01)">
+    <path id="Path_39" data-name="Path 39" class="cls-1" d="M645.4,44s64.4-34.7,63-34c-28,14-364.6,228.1-697.8,102.5a.939.939,0,0,1,.1-1.8C61.2,99.5,172.4,36.1,195.4,17c6-5,6,1-3,10-184,229-208,350-151,350,35,0,62.6-30,120.8-117.1,48.9-73.2,93.2-51.9,102.5-40,1.7,2.1,1.8,2.1.6.1-6-10-52.5-29.6-102.2,39.9h0C136.4,297,120.4,375,163.4,375c46,0,62-48,98.5-103.8,4.6-7.1,7-8.1,1.9.6C234.4,322,223.9,376.3,261.4,375c30-1,83.1-103.7,101.6-149a1.205,1.205,0,0,1,.5-.5C476.3,183.4,611.8,69.3,571.4,15.9c-37-48.9-171.7,231.4-188.8,270-.4.9.9,1.9,1.5,1.1,50.3-79,124.1-108.9,122.3-43-1.3,50.6-57,131-101,131-33,0-40.4-27-27-51.6a1.193,1.193,0,0,1,.9-.5C516,335.8,563.1,310.8,595.7,297c44.6-21.6,52-38.2,56.8-47.1,17.9-33-17.1-67-68-23.6-11.4,9.7-29.9,31.5-44.1,76.3-17.5,55.3,1,72.4,37,72.4,114,0,200.7-126.7,166-160-24-23-55.7,4.5-46,27,9,21,46,37,143-35.2,1.3-.7.8.5,0,1.2-86.8,75.3-113,150-64,165,57.3,17.5,119.4-82.6,184-162.3L1058,85.6"/>
+    <path id="Path_40" data-name="Path 40" class="goldJack" d="M1094.2,58.1l-48.1,62.6-20.6-15.8,48.1-62.6s6.2-1.5,7-.9,10.9-20,10.9-20L1102,20l6.3,4.9,1.4,10.5s-17.3,15.1-16.5,15.7S1094.2,58.1,1094.2,58.1Z"/>
+    <g id="Group_15" data-name="Group 15">
+      <rect class="darkJack" id="Rectangle_75" data-name="Rectangle 75" width="8" height="26" transform="translate(1066.32 51.736) rotate(-52.463)"/>
+      <rect class="darkJack" id="Rectangle_76" data-name="Rectangle 76" width="8" height="26" transform="translate(1051.669 70.716) rotate(-52.463)"/>
+      <rect class="darkJack" id="Rectangle_77" data-name="Rectangle 77" width="107" height="34" transform="translate(957.134 187.211) rotate(-52.463)"/>
+    </g>
+  </g>
+
+</symbol>
+
+</defs>
+</svg>
+
+
+<div class="ico-block">
+    <svg class="icon shadow"><use xlink:href="#ico1"></use></svg>
+</div>
+</body>
+</html>
