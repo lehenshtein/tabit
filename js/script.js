@@ -68,17 +68,18 @@ var spaceBetweenRounded = 0;
         
         
         if(elementOfTablist.hasClass('note')) {
-            console.log(event.target);
-            elementOfTablist.remove();
+            Editor('Edit note', 'edit');
+            noteLength = elementOfTablist.attr('data-note');//changing note length to not change it when editing other char
+            noteFret = elementOfTablist.find('.note-fret').text();
         }
-        else if(elementOfTablist.hasClass('note-fret')) {
-            console.log(event.target.parentNode);
+        else if(elementOfTablist.hasClass('note-delete')) {
             elementOfTablist.parent().remove();
         }
+
         else if (elementOfTablist.hasClass('string')){
             console.log(event.target);
             
-            editor.addClass('active');
+            Editor('Create note', 'create');
             
             
             var parentOffset = elementOfTablist.offset();
@@ -99,29 +100,55 @@ var spaceBetweenRounded = 0;
             spaceBetweenRounded = Math.floor(spaceBetweenNoteAndClick) * 24;
             }
             
-            
-            console.log('отступ слева' + relX);
-            console.log('отступ сверху' + relY);
-            console.log('последний элемент');
-            console.log(lastChild);
-             console.log('отступ слева дочернего элемента' + childX);
-            console.log('отступ сверху дочернего элемента' + childY);
-            console.log(lastChildWidth);
-            console.log('расстояние между кликом и правым краем последней ноты:');
-            console.log(spaceBetweenNoteAndClick);
-            console.log(spaceBetweenRounded);
+//            
+//            console.log('отступ слева' + relX);
+//            console.log('отступ сверху' + relY);
+//            console.log('последний элемент');
+//            console.log(lastChild);
+//             console.log('отступ слева дочернего элемента' + childX);
+//            console.log('отступ сверху дочернего элемента' + childY);
+//            console.log(lastChildWidth);
+//            console.log('расстояние между кликом и правым краем последней ноты:');
+//            console.log(spaceBetweenNoteAndClick);
+//            console.log(spaceBetweenRounded);
             
         }
-        console.log(elementOfTablist);
-     return false;
+ //    return false;
     });
 
-editor.on('click', function(event2) { //tracking what we clicked in note editor
+function Editor(title, className) {
+    var editorTitle = $('.note-popup--wrapper h3')
+    editor.addClass('active ' + className);
+    editorTitle.text(title);
+};
+
+    editor.on('click', function(event2) { //tracking what we clicked in note editor
                 var elem = $(event2.target);
                 
                 if(elem.hasClass('close-img')) {
-                    editor.removeClass('active');
-                    $( '<div class="note note' + noteLength + ' ' + noteTechnique + '"' + 'style="margin-left: '+ spaceBetweenRounded + 'px' +'"><div class="note-fret">' + noteFret + '</div></div>' ).appendTo( elementOfTablist );
+                    editor.removeClass('active edit create');
+                }
+                else if(elem.hasClass('add-note')) {
+                    editor.removeClass('active create');
+                    $( '<div data-note="' + noteLength + '" class="note note' + noteLength + ' ' + noteTechnique + '"' + 'style="margin-left: '+ spaceBetweenRounded + 'px' +'"><div class="note-fret">' + noteFret + '</div><div class="note-delete">x</div></div>' ).appendTo( elementOfTablist );
+                    noteTechnique = '';
+                }
+                else if(elem.hasClass('edit-note')) {
+                    var fretVal = elementOfTablist.find('.note-fret');
+            
+                    editor.removeClass('active edit');
+                    
+                    elementOfTablist.removeClass('note32 note16 note8 note4 note2 note1 noteX');
+                    elementOfTablist.addClass('note' + noteLength);
+                    elementOfTablist.attr('data-note', noteLength);
+                    
+                    fretVal.text(noteFret);
+                    
+                    elementOfTablist.removeClass('hm slide vibrato half-vibrato bend half-bend top-bend half-top-bend');
+                    elementOfTablist.addClass(noteTechnique);
+//                     $( '<div class="note note' + noteLength + ' ' + noteTechnique + '"' + 'style="margin-left: '+ spaceBetweenRounded + 'px' +'"><div class="note-fret">' + noteFret + '</div><div class="note-delete">x</div></div>' ).appendTo( elementOfTablist.parent() );
+//                    elementOfTablist.remove();
+                    
                     noteTechnique = '';
                 }
                 else if (elem.hasClass('note-length-btn')){
@@ -141,5 +168,6 @@ editor.on('click', function(event2) { //tracking what we clicked in note editor
                 console.log(noteTechnique);
                 }
             });
+
 
     
