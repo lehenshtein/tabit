@@ -154,15 +154,17 @@ function Editor(title, className) {
                     elementOfTablist.attr('data-note', noteLength);
                     
                      if(elementOfTablist.next().hasClass('note')) { //просчет изменения марджина соседа
-                         var deleteMargin = parseInt(elementOfTablist.css("margin-left")),
-                        deleteWidth = elementOfTablist.width(),
+                         var deleteWidth = elementOfTablist.width(),
                         nextNote = elementOfTablist.next(),
                         nextMargin = parseInt(nextNote.css("margin-left"));
-                         if (noteWidth < deleteWidth) {
-                             nextNote.css('margin-left', nextMargin - (deleteWidth / 2));
-                         } else if (noteWidth > deleteWidth) {
-                             nextNote.css('margin-left', nextMargin + deleteWidth);
-                         }
+                         
+                         nextNote.css('margin-left', nextMargin + noteWidth - deleteWidth);
+                
+//                         if (noteWidth < deleteWidth) {
+//                             nextNote.css('margin-left', nextMargin - (deleteWidth / 2));
+//                         } else if (noteWidth > deleteWidth) {
+//                             nextNote.css('margin-left', nextMargin + deleteWidth);
+//                         }
 
                         }
                     
