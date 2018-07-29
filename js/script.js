@@ -73,6 +73,15 @@ var spaceBetweenRounded = 0;
             noteFret = elementOfTablist.find('.note-fret').text();
         }
         else if(elementOfTablist.hasClass('note-delete')) {
+            if (elementOfTablist.parent().next().hasClass('note')) {
+                 var deleteMargin = parseInt(elementOfTablist.parent().css("margin-left")),
+                deleteWidth = elementOfTablist.parent().width(),
+                nextNote = elementOfTablist.parent().next(),
+                nextMargin = parseInt(nextNote.css("margin-left")),
+                changeMargin = deleteMargin + deleteWidth + nextMargin;
+                
+                nextNote.css('margin-left', changeMargin);
+            }
             elementOfTablist.parent().remove();
         }
 
@@ -134,7 +143,9 @@ function Editor(title, className) {
                     noteTechnique = '';
                 }
                 else if(elem.hasClass('edit-note')) {
-                    var fretVal = elementOfTablist.find('.note-fret');
+                    
+                    var fretVal = elementOfTablist.find('.note-fret'),
+                        noteWidth = elementOfTablist.width(); //ширина ноты, нужна для изменения марджина соседа при редактировании
             
                     editor.removeClass('active edit');
                     
@@ -142,13 +153,24 @@ function Editor(title, className) {
                     elementOfTablist.addClass('note' + noteLength);
                     elementOfTablist.attr('data-note', noteLength);
                     
+                     if(elementOfTablist.next().hasClass('note')) { //просчет изменения марджина соседа
+                         var deleteMargin = parseInt(elementOfTablist.css("margin-left")),
+                        deleteWidth = elementOfTablist.width(),
+                        nextNote = elementOfTablist.next(),
+                        nextMargin = parseInt(nextNote.css("margin-left"));
+                         if (noteWidth < deleteWidth) {
+                             nextNote.css('margin-left', nextMargin - (deleteWidth / 2));
+                         } else if (noteWidth > deleteWidth) {
+                             nextNote.css('margin-left', nextMargin + deleteWidth);
+                         }
+
+                        }
+                    
                     fretVal.text(noteFret);
                     
                     elementOfTablist.removeClass('hm slide vibrato half-vibrato bend half-bend top-bend half-top-bend');
                     elementOfTablist.addClass(noteTechnique);
-//                     $( '<div class="note note' + noteLength + ' ' + noteTechnique + '"' + 'style="margin-left: '+ spaceBetweenRounded + 'px' +'"><div class="note-fret">' + noteFret + '</div><div class="note-delete">x</div></div>' ).appendTo( elementOfTablist.parent() );
-//                    elementOfTablist.remove();
-                    
+
                     noteTechnique = '';
                 }
                 else if (elem.hasClass('note-length-btn')){
