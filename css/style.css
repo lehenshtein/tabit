@@ -29,6 +29,7 @@
     text-decoration: none;
 }
 :root {
+    --color32: #b715f2;
     --color16: #E51F1F;
     --color8: #FF5608;
     --color4: #FE9900;
@@ -150,8 +151,13 @@ body {
     -webkit-box-shadow: 0px 1px 2px var(--colorX);
     box-shadow: 0px 1px 2px var(--colorX);
 }
-.noteX .note-fret {
+.noteX .note-fret, .note32 .note-fret {
     padding-left: 0;
+}
+.note32 {
+    width: 24px;
+    background-color: var(--color32);
+    text-align: center;
 }
 .note16 {
     width: 48px;
@@ -354,6 +360,9 @@ h3 {
 }
 .note-length-btn:active {
     opacity: 0.4;
+}
+.note-length-btn__32 {
+    background-color: var(--color32);
 }
 .note-length-btn__16 {
     background-color: var(--color16);
